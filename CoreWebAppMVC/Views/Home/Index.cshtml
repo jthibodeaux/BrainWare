@@ -1,0 +1,32 @@
+﻿@{
+      @model List<OrderView>;
+      ViewData["Title"] = "Home Page"; 
+ }
+
+
+<div class="jumbotron">
+    <h1>BrainWare Orders</h1>
+    <p class="lead">This is the BrainWare orders page! Welcome</p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Your Orders</h2>
+        <div id="orders"></div>
+    </div>
+
+</div>
+
+
+<ul>
+    @foreach (var order in Model)
+    {
+        <li>@(order.OrderDescription + $"  (Total: ${order.OrderTotal})")</li>
+
+             <ul>
+                    @foreach (var orderProduct in order.OrderProducts)
+                    {
+                       <li>@(orderProduct.Product.Name + $"  ({orderProduct.Quantity}  ${orderProduct.Price})")</li>
+                    }
+             </ul>
+     }
+</ul>
